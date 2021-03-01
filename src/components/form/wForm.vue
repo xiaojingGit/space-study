@@ -13,6 +13,7 @@
 
 <script>
 export default {
+  // provide/inject : 隔n代都可以互相传递数据
   provide () {
     return {
       form: this

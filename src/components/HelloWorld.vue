@@ -20,7 +20,6 @@
         <button @click="handleSubmit">提交</button>
       </w-form-item>
     </w-form>
-    {{ form.name }}
   </div>
 </template>
 
