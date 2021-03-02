@@ -2,12 +2,13 @@
  * @Author: wangjing
  * @Date: 2021-02-07 10:25:50
  * @LastEditors: wangjing
- * @LastEditTime: 2021-02-07 11:21:23
+ * @LastEditTime: 2021-03-02 15:05:51
  * @Description: file content
 -->
 <template>
   <div>
     <input
+      autocomplete="new-password"
       :type="!showPassword ? 'text' : 'password'"
       :placeholder="placeholder"
       :value="value"
@@ -16,7 +17,9 @@
 </template>
 
 <script>
+import emitter from '@/utils/emitter'
 export default {
+  mixins: [ emitter ],
   props: {
     placeholder: {
       type: String,
@@ -33,10 +36,11 @@ export default {
   },
   methods: {
     handleInput (e) {
-      this.$emit('input', e.target.value)
+      const val = e.target.value
+      this.$emit('input', val)
 
       // 触发校验
-      
+      this.dispatch('wFormItem', 'input-change', [val])
     }
   }
 }

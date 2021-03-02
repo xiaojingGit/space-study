@@ -2,7 +2,7 @@
  * @Author: wangjing
  * @Date: 2021-02-07 11:25:05
  * @LastEditors: wangjing
- * @LastEditTime: 2021-02-07 16:12:36
+ * @LastEditTime: 2021-03-02 17:23:22
  * @Description: file content
 -->
 <template>
@@ -30,6 +30,18 @@ export default {
     validate (cb) {
       // 检查所有表单项
       // const tasks =
+      const tasks = this.$children
+        .filter(item => item.prop)
+        .map(item => item.validate())
+      Promise.all(tasks)
+        .then((res) => {
+          console.log(res)
+          const bool = true
+          cb(bool)
+        }).catch(() => {
+          const bool = false
+          cb(bool)
+        })
     }
   }
 }
