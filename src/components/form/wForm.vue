@@ -13,6 +13,7 @@
 
 <script>
 export default {
+  componentName: 'wForm',
   // provide/inject : 隔n代都可以互相传递数据
   provide () {
     return {

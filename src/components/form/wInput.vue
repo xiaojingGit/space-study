@@ -19,6 +19,7 @@
 <script>
 import emitter from '@/utils/emitter'
 export default {
+  componentName: 'wInput',
   mixins: [ emitter ],
   props: {
     placeholder: {

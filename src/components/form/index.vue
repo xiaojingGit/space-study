@@ -20,6 +20,7 @@
         <button @click="handleSubmit">提交</button>
       </w-form-item>
     </w-form>
+    <div class="btn" @click="handleClick">点击</div>
   </div>
 </template>
 
@@ -30,6 +31,7 @@ import wInput from './wInput'
 import Notice from '../Notice'
 import create from '@/utils/create'
 export default {
+  componentName: 'formIndex',
   components: {
     wForm,
     wFormItem,
@@ -74,6 +76,12 @@ export default {
         // } else {
         //   console.log('登录失败')
         // }
+      })
+    },
+    handleClick () {
+      this.$message({
+        title: '弹窗',
+        tip: '这是一个弹窗'
       })
     }
   }
