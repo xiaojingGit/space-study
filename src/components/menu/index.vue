@@ -9,6 +9,7 @@
   <div>
     <router-link to="/">element-ui表单模拟</router-link>
     <router-link to="/detail">详情测试</router-link>
+    <router-link to="/person">个人简介</router-link>
   </div>
 </template>
 
