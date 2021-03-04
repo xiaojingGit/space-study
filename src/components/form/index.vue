@@ -2,12 +2,11 @@
  * @Author: wangjing
  * @Date: 2021-03-02 17:01:49
  * @LastEditors: wangjing
- * @LastEditTime: 2021-03-04 18:22:20
+ * @LastEditTime: 2021-03-04 18:37:17
  * @Description: file content
 -->
 <template>
   <div>
-    <h1>{{ msg }}</h1>
     <h2>element-ui表单模拟</h2>
     <w-form ref="wForm" :model="form" :rules="rules">
       <w-form-item label="账号：" prop="name">
@@ -48,7 +47,6 @@ export default {
       // })
     }
     return {
-      msg: 'Welcome to Your Vue.js App',
       form: {
         name: '',
         pwd: ''
