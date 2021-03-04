@@ -2,7 +2,7 @@
  * @Author: wangjing
  * @Date: 2021-03-02 17:01:49
  * @LastEditors: wangjing
- * @LastEditTime: 2021-03-02 18:06:45
+ * @LastEditTime: 2021-03-04 18:22:20
  * @Description: file content
 -->
 <template>
@@ -81,7 +81,13 @@ export default {
     handleClick () {
       this.$message({
         title: '弹窗',
-        tip: '这是一个弹窗'
+        tip: '这是一个弹窗',
+        cancelBtnTxt: '取消',
+        confirmBtnTxt: '确认'
+      }).then(() => {
+        console.log('确认')
+      }).catch((err) => {
+        console.log(err)
       })
     }
   }

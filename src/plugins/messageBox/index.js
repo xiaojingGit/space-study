@@ -1,52 +1,48 @@
-import MessageBoxVue from './index'
+/*
+ * @Author: wangjing
+ * @Date: 2021-03-04 16:53:49
+ * @LastEditors: wangjing
+ * @LastEditTime: 2021-03-04 18:20:26
+ * @Description: file content
+ */
+import MessageBoxVue from './index.vue'
 
-let instance
+let instance, _Vue, MessageBoxConstructor
 
-const defaultCallback = (action) => {
-  if (action === 'confirm') {
-    return Promise.resolve()
-  } else {
-    return Promise.reject(action)
-  }
-}
+const MessageBox = (options) => {
+  return new Promise((resolve, reject) => {
+    if (!instance) {
+      instance = new MessageBoxConstructor({
+        el: document.createElement('div')
+      })
+    }
 
-// const initInstance = () => {
-//   instance = new MessageBoxConstructor({
-//     el: document.createElement('div')
-//   })
-//   instance.callback = defaultCallback
-// }
+    if (!instance.visible) {
+      for (let item in options) {
+        instance[item] = options[item]
+      }
 
-// const showMsgBox = () => {
-//   if (!instance) {
-//     initInstance()
-//   }
+      instance.callback = (action) => {
+        if (action === 'confirm') {
+          resolve()
+        }
+        if (action === 'cancel') {
+          reject(new Error('cancel'))
+        }
+      }
 
-//   if (!instance.visible) {
-//     console.log(instance.$el)
-//     document.body.appendChild(instance.$el)
-//     Vue.nextTick(() => {
-//       instance.visible = true
-//     })
-//   }
-// }
-
-const MessageBox = (props) => {
-  instance.props = props
-  instance.visible = true
+      document.body.appendChild(instance.$el)
+      _Vue.nextTick(() => {
+        instance.visible = true
+      })
+    }
+  })
 }
 
 export default {
   install: Vue => {
-    console.log(MessageBoxVue)
-    let MessageBoxConstructor = Vue.extend(MessageBoxVue)
-    if (!instance) {
-      instance = new MessageBoxConstructor()
-      instance.$mount(document.createElement('div'))
-      instance.callback = defaultCallback
-      document.body.appendChild(instance.$el)
-    }
-
+    _Vue = Vue
+    MessageBoxConstructor = Vue.extend(MessageBoxVue)
     Vue.prototype.$message = MessageBox
   }
 }
