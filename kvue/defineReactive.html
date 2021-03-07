@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+  <script>
+    // 将对象属性变成响应式
+    function defineReactive(obj, key, val) {
+      // 如果val是对象，需要递归处理，变成响应式
+      Object.defineProperty(obj, key, {
+        get () {
+          return val
+        },
+        set (newVal) {
+          if (val !== newVal) {
+            console.log(`set ${key}:`, newVal, val)
+            val = newVal
+
+            update()
+          }
+        }
+      })
+    }
+
+    var obj = {}
+    defineReactive(obj, 'a', 1)
+
+    function update () {
+      document.getElementById('app').innerText = obj.a
+    }
+
+    setInterval(() => {
+      obj.a++
+    }, 1000);
+  </script>
+</body>
+</html>
