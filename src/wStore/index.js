@@ -9,10 +9,15 @@ const store = new Vuex.Store({
     sex: 'girl',
     age: '26'
   },
+  getters: {
+    totalInfo (state) {
+      return `${state.name} - ${state.sex} - ${state.age}`
+    }
+  },
   mutations: {
     updateInfo (state) {
       state.name = '西西'
-      state.sex = 'girl'
+      state.sex = '女孩'
       state.age = '25'
     }
   },

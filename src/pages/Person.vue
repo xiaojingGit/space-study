@@ -5,6 +5,7 @@
     <p>姓名：{{ $store.state.name }}</p>
     <p>年龄：{{ $store.state.age }}</p>
     <p>性别：{{ $store.state.sex }}</p>
+    <p>完整信息：{{ $store.getters.totalInfo }}</p>
     <button @click="handleClick">点击</button>
   </div>
 </template>

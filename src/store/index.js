@@ -12,7 +12,7 @@ const store = new Vuex.Store({
   mutations: {
     updateInfo (state) {
       state.name = '西西'
-      state.sex = 'girl'
+      state.sex = '女孩'
       state.age = '25'
     }
   },
